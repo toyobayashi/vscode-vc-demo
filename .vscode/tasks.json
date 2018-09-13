@@ -1,0 +1,62 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "debug-x64",
+            "type": "shell",
+            "command": "${workspaceFolder}/vcbuild",
+            "args": [
+                "x64",
+                "Debug",
+                "${workspaceFolder}",
+                "${workspaceRootFolderName}",
+                "${config:files}"
+            ],
+            "group": "build"
+        },
+        {
+            "label": "release-x64",
+            "type": "shell",
+            "command": "${workspaceFolder}/vcbuild",
+            "args": [
+                "x64",
+                "Release",
+                "${workspaceFolder}",
+                "${workspaceRootFolderName}",
+                "${config:files}"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "debug-x86",
+            "type": "shell",
+            "command": "${workspaceFolder}/vcbuild",
+            "args": [
+                "x86",
+                "Debug",
+                "${workspaceFolder}",
+                "${workspaceRootFolderName}",
+                "${config:files}"
+            ],
+            "group": "build"
+        },
+        {
+            "label": "release-x86",
+            "type": "shell",
+            "command": "${workspaceFolder}/vcbuild",
+            "args": [
+                "x86",
+                "Release",
+                "${workspaceFolder}",
+                "${workspaceRootFolderName}",
+                "${config:files}"
+            ],
+            "group": "build"
+        }
+    ]
+}
