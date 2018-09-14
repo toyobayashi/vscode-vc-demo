@@ -1,0 +1,6 @@
+{
+    "targetName": "VscodeVcDemo",
+    "sources": [
+        "src/*.cpp"
+    ]
+}

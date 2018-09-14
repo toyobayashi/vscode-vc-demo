@@ -11,8 +11,9 @@
                 "x64",
                 "Debug",
                 "${workspaceFolder}",
-                "${workspaceRootFolderName}",
-                "${config:files}"
+                "${config:targetName}",
+                "${config:nodeVersion}",
+                "${config:sources}"
             ],
             "group": "build"
         },
@@ -24,8 +25,9 @@
                 "x64",
                 "Release",
                 "${workspaceFolder}",
-                "${workspaceRootFolderName}",
-                "${config:files}"
+                "${config:targetName}",
+                "${config:nodeVersion}",
+                "${config:sources}"
             ],
             "group": {
                 "kind": "build",
@@ -37,11 +39,12 @@
             "type": "shell",
             "command": "${workspaceFolder}/vcbuild",
             "args": [
-                "x86",
+                "ia32",
                 "Debug",
                 "${workspaceFolder}",
-                "${workspaceRootFolderName}",
-                "${config:files}"
+                "${config:targetName}",
+                "${config:nodeVersion}",
+                "${config:sources}"
             ],
             "group": "build"
         },
@@ -50,11 +53,12 @@
             "type": "shell",
             "command": "${workspaceFolder}/vcbuild",
             "args": [
-                "x86",
+                "ia32",
                 "Release",
                 "${workspaceFolder}",
-                "${workspaceRootFolderName}",
-                "${config:files}"
+                "${config:targetName}",
+                "${config:nodeVersion}",
+                "${config:sources}"
             ],
             "group": "build"
         }

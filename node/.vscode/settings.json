@@ -1,0 +1,7 @@
+{
+    "nodeVersion": "8.12.0",
+    "targetName": "VscodeVcDemo",
+    "sources": [
+        "src/*.cpp"
+    ]
+}
