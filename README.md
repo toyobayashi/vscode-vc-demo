@@ -1,11 +1,14 @@
 # vscode-vc-demo
 
-在 Visual Studio Code 中使用 VC 编译器编译并调试 C++ 代码。
+在 Visual Studio Code 中使用 VC 编译器编译并调试 C++ 代码。本仓库只面向 Windows 用户。
 
 ## 准备
 
 1. 安装 1.22.1 版本以后的 Visual Studio Code 并安装 C/C++ 扩展
-2. 安装 Visual Studio 2017 并安装 「使用 C++ 的桌面开发」。如果开发 Node.js 原生模块则需要安装对应架构的 Node.js 及其头文件到 ```${env.HOME}/.node-gyp/${config:nodeVersion}```
+2. 安装 Visual Studio 2017 并安装 「使用 C++ 的桌面开发」。如果开发 Node.js 原生模块则需要安装对应架构的 Node.js 及其头文件到 ```${env:HOME}/.node-gyp/${config:nodeVersion}```，或使用 [node-gyp](https://www.npmjs.com/package/node-gyp)
+    ``` cmd
+    > node-gyp install [--target=nodeVersion] [--dist-url=https://atom.io/download/electron]
+    ```
 3. 添加环境变量 ```VS_ROOT``` ，设置为 Visual Studio 的安装根目录，例如 ```D:\somewhere\Microsoft Visual Studio```
 4. 添加环境变量 ```HOME``` ，设置为系统用户根目录，例如 ```C:\Users\Administrator```
 
