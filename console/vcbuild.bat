@@ -7,8 +7,16 @@ set targetName=%4
 
 set compilerFlags=
 set linkFlags=
-set buildDir=build
+set buildDir=build\%arch%\%mode%
 set files=
+
+set commonCompilerFlags=/permissive- /GS /W3 /Zc:wchar_t /Gm- /Zc:inline /sdl /Fd"%buildDir%\vc141.pdb" /fp:precise /D "_MBCS" /errorReport:prompt /WX- /Zc:forScope /Gd /FC /Fa"%buildDir%/" /EHsc /nologo /Fo"%buildDir%/" /Fp"%buildDir%\%targetName%.pch" /diagnostics:classic
+
+set linkLib="kernel32.lib" "user32.lib" "gdi32.lib" "winspool.lib" "comdlg32.lib" "advapi32.lib" "shell32.lib" "ole32.lib" "oleaut32.lib" "uuid.lib" "odbc32.lib" "odbccp32.lib"
+
+set commonLinkFlags=/OUT:"%workspaceFolder%\%buildDir%\%targetName%.exe" /MANIFEST /NXCOMPAT /PDB:"%workspaceFolder%\%buildDir%\%targetName%.pdb" /DYNAMICBASE
+
+set commonLinkFlags2=/MANIFESTUAC:"level='asInvoker' uiAccess='false'" /ManifestFile:"%buildDir%\%targetName%.exe.intermediate.manifest" /ERRORREPORT:PROMPT /NOLOGO /TLBID:1
 
 if /i "%arch%"=="x64" (
     call "%VS_ROOT%\2017\Community\VC\Auxiliary\Build\vcvars64.bat"
@@ -23,36 +31,27 @@ if /i "%arch%"=="x86" (
 )
 
 :debug-x64
-set buildDir=%buildDir%\%arch%\%mode%
-set compilerFlags=/JMC /permissive- /GS /W3 /Zc:wchar_t /ZI /Gm- /Od /sdl /Fd"%buildDir%\vc141.pdb" /Zc:inline /fp:precise /D "_MBCS" /errorReport:prompt /WX- /Zc:forScope /RTC1 /Gd /MDd /FC /Fa"%buildDir%/" /EHsc /nologo /Fo"%buildDir%/" /Fp"%buildDir%\%targetName%.pch" /diagnostics:classic
-set linkFlags=/OUT:"%workspaceFolder%\%buildDir%\%targetName%.exe" /MANIFEST /NXCOMPAT /PDB:"%workspaceFolder%\%buildDir%\%targetName%.pdb" /DYNAMICBASE "kernel32.lib" "user32.lib" "gdi32.lib" "winspool.lib" "comdlg32.lib" "advapi32.lib" "shell32.lib" "ole32.lib" "oleaut32.lib" "uuid.lib" "odbc32.lib" "odbccp32.lib" /DEBUG:FASTLINK /MACHINE:X64 /INCREMENTAL /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /ManifestFile:"%buildDir%\%targetName%.exe.intermediate.manifest" /ERRORREPORT:PROMPT /NOLOGO /TLBID:1
+set compilerFlags=%commonCompilerFlags% /JMC /ZI /Od /RTC1 /MDd
+set linkFlags=%commonLinkFlags% %linkLib% %commonLinkFlags2% /DEBUG:FASTLINK /INCREMENTAL /MACHINE:X64
 goto var-done
 
 :release-x64
-set buildDir=%buildDir%\%arch%\%mode%
-set compilerFlags=/permissive- /GS /GL /W3 /Gy /Zc:wchar_t /Zi /Gm- /O2 /sdl /Fd"%buildDir%\vc141.pdb" /Zc:inline /fp:precise /D "_MBCS" /errorReport:prompt /WX- /Zc:forScope /Gd /Oi /MT /FC /Fa"%buildDir%/" /EHsc /nologo /Fo"%buildDir%/" /Fp"%buildDir%\%targetName%.pch" /diagnostics:classic 
-set linkFlags=/OUT:"%workspaceFolder%\%buildDir%\%targetName%.exe" /MANIFEST /LTCG:incremental /NXCOMPAT /PDB:"%workspaceFolder%\%buildDir%\%targetName%.pdb" /DYNAMICBASE "kernel32.lib" "user32.lib" "gdi32.lib" "winspool.lib" "comdlg32.lib" "advapi32.lib" "shell32.lib" "ole32.lib" "oleaut32.lib" "uuid.lib" "odbc32.lib" "odbccp32.lib" /DEBUG:FULL /MACHINE:X64 /OPT:REF /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /ManifestFile:"%buildDir%\%targetName%.exe.intermediate.manifest" /OPT:ICF /ERRORREPORT:PROMPT /NOLOGO /TLBID:1
+set compilerFlags=%commonCompilerFlags% /GL /Gy /Zi /O2 /Oi /MT 
+set linkFlags=%commonLinkFlags% /LTCG:incremental %linkLib% %commonLinkFlags2% /DEBUG:FULL /OPT:REF /OPT:ICF /MACHINE:X64
 goto var-done
 
 :debug-x86
-set buildDir=%buildDir%\%arch%\%mode%
-set compilerFlags=/JMC /permissive- /GS /analyze- /W3 /Zc:wchar_t /ZI /Gm- /Od /sdl /Fd"%buildDir%\vc141.pdb" /Zc:inline /fp:precise /D "_MBCS" /errorReport:prompt /WX- /Zc:forScope /RTC1 /Gd /Oy- /MDd /FC /Fa"%buildDir%/" /EHsc /nologo /Fo"%buildDir%/" /Fp"%buildDir%\%targetName%.pch" /diagnostics:classic
-set linkFlags=/OUT:"%workspaceFolder%\%buildDir%\%targetName%.exe" /MANIFEST /NXCOMPAT /PDB:"%workspaceFolder%\%buildDir%\%targetName%.pdb" /DYNAMICBASE "kernel32.lib" "user32.lib" "gdi32.lib" "winspool.lib" "comdlg32.lib" "advapi32.lib" "shell32.lib" "ole32.lib" "oleaut32.lib" "uuid.lib" "odbc32.lib" "odbccp32.lib" /DEBUG:FASTLINK /MACHINE:X86 /INCREMENTAL /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /ManifestFile:"%buildDir%\%targetName%.exe.intermediate.manifest" /ERRORREPORT:PROMPT /NOLOGO /TLBID:1
+set compilerFlags=%commonCompilerFlags% /JMC /analyze- /ZI /Od /RTC1 /Oy- /MDd
+set linkFlags=%commonLinkFlags% %linkLib% %commonLinkFlags2% /DEBUG:FASTLINK /INCREMENTAL /MACHINE:X86
 goto var-done
 
 :release-x86
-set buildDir=%buildDir%\%arch%\%mode%
-set compilerFlags=/permissive- /GS /GL /analyze- /W3 /Gy /Zc:wchar_t /Zi /Gm- /O2 /sdl /Fd"%buildDir%\vc141.pdb" /Zc:inline /fp:precise /D "_MBCS" /errorReport:prompt /WX- /Zc:forScope /Gd /Oy- /Oi /MT /FC /Fa"%buildDir%/" /EHsc /nologo /Fo"%buildDir%/" /Fp"%buildDir%\%targetName%.pch" /diagnostics:classic
-set linkFlags=/OUT:"%workspaceFolder%\%buildDir%\%targetName%.exe" /MANIFEST /LTCG:incremental /NXCOMPAT /PDB:"%workspaceFolder%\%buildDir%\%targetName%.pdb" /DYNAMICBASE "kernel32.lib" "user32.lib" "gdi32.lib" "winspool.lib" "comdlg32.lib" "advapi32.lib" "shell32.lib" "ole32.lib" "oleaut32.lib" "uuid.lib" "odbc32.lib" "odbccp32.lib" /DEBUG:FULL /MACHINE:X86 /OPT:REF /SAFESEH  /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /ManifestFile:"%buildDir%\%targetName%.exe.intermediate.manifest" /OPT:ICF /ERRORREPORT:PROMPT /NOLOGO /TLBID:1
+set compilerFlags=%commonCompilerFlags% /GL /analyze- /Gy /Zi /O2 /Oy- /Oi /MT
+set linkFlags=%commonLinkFlags% /LTCG:incremental %linkLib% %commonLinkFlags2% /DEBUG:FULL /OPT:REF /SAFESEH /OPT:ICF /MACHINE:X86
 goto var-done
 
 :var-done
-if /i "%buildDir%"=="build" (
-    echo Error arguments.
-    exit /b
-) else (
-    goto next-arg
-)
+goto next-arg
 
 :next-arg
 if /i "%5"=="" (
