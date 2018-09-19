@@ -10,7 +10,9 @@ set linkFlags=
 set buildDir=build\%arch%\%mode%
 set files=
 
-set commonCompilerFlags=/permissive- /GS /W3 /Zc:wchar_t /Gm- /Zc:inline /sdl /Fd"%buildDir%\vc141.pdb" /fp:precise /D "_MBCS" /errorReport:prompt /WX- /Zc:forScope /Gd /FC /Fa"%buildDir%/" /EHsc /nologo /Fo"%buildDir%/" /Fp"%buildDir%\%targetName%.pch" /diagnostics:classic
+set preDefine=/D "_MBCS" /D "_CRT_SECURE_NO_DEPRECATE"
+
+set commonCompilerFlags=/permissive- /GS /W3 /Zc:wchar_t /Gm- /Zc:inline /sdl /Fd"%buildDir%\vc141.pdb" /fp:precise %preDefine% /errorReport:prompt /WX- /Zc:forScope /Gd /FC /Fa"%buildDir%/" /EHsc /nologo /Fo"%buildDir%/" /Fp"%buildDir%\%targetName%.pch" /diagnostics:classic
 
 set linkLib="kernel32.lib" "user32.lib" "gdi32.lib" "winspool.lib" "comdlg32.lib" "advapi32.lib" "shell32.lib" "ole32.lib" "oleaut32.lib" "uuid.lib" "odbc32.lib" "odbccp32.lib"
 
