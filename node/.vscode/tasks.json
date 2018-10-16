@@ -71,6 +71,22 @@
                 "${config:sources}"
             ],
             "group": "build"
+        },
+        {
+            "label": "tsc",
+            "type": "typescript",
+            "tsconfig": "test\\tsconfig.json",
+            "problemMatcher": [
+                "$tsc"
+            ]
+        },
+        {
+            "label": "tsc-debug-x64",
+            "dependsOn": ["tsc", "debug-x64"]
+        },
+        {
+            "label": "tsc-debug-x86",
+            "dependsOn": ["tsc", "debug-x86"]
         }
     ]
 }

@@ -5,18 +5,56 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "name": "VC++ launch x64",
+            "type": "cppvsdbg",
+            "request": "launch",
+            "program": "node",
+            "args": ["${workspaceFolder}\\build\\Debug\\${config:targetName}.node"],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": true,
+            "preLaunchTask": "debug-x64"
+        },
+        {
+            "name": "VC++ launch x86",
+            "type": "cppvsdbg",
+            "request": "launch",
+            "program": "node",
+            "args": ["${workspaceFolder}\\build\\Debug\\${config:targetName}.node"],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": true,
+            "preLaunchTask": "debug-x86"
+        },
+        {
             "type": "node",
             "request": "launch",
-            "name": "launch x64",
+            "name": "Node launch x64",
             "program": "${workspaceFolder}/test/index.js",
             "preLaunchTask": "debug-x64"
         },
         {
             "type": "node",
             "request": "launch",
-            "name": "launch x86",
+            "name": "TS launch x64",
+            "program": "${workspaceFolder}/test/ts-index.js",
+            "preLaunchTask": "tsc-debug-x64"
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Node launch x86",
             "program": "${workspaceFolder}/test/index.js",
             "preLaunchTask": "debug-x86"
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "TS launch x86",
+            "program": "${workspaceFolder}/test/ts-index.js",
+            "preLaunchTask": "tsc-debug-x86"
         },
         {
             "name": "VC++ Attach",

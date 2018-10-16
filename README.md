@@ -27,7 +27,7 @@
 
 ### Node.js 原生模块
 
-1. 在 JavaScript 入口第 1 行打好断点，```F5``` 启动 Node.js 调试进程
+1. 在 JavaScript 或 TypeScript 入口第 1 行打好断点，启动对应的 Node.js 调试进程
 2. 在 C++ 代码中打断点，启动 "VC++ Attach"，附加到 Node.js 调试进程
 
 * ```Ctrl + Shift + B``` 编译生成 x64 (release)
