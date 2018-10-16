@@ -68,7 +68,7 @@ shift
 goto next-arg
 
 :args-done
-if exist %buildDir% rd /S /Q %buildDir%
+rem if exist %buildDir% rd /S /Q %buildDir%
 if not exist %buildDir% mkdir %buildDir%
 echo %buildDir%
 echo cl %compilerFlags% %files% /link %linkFlags%

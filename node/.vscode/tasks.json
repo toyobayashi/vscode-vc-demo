@@ -4,6 +4,16 @@
     "version": "2.0.0",
     "tasks": [
         {
+            "label": "clean",
+            "type": "shell",
+            "command": "rd",
+            "args": [
+                "/S",
+                "/Q",
+                "${workspaceFolder}\\build"
+            ]
+        },
+        {
             "label": "debug-x64",
             "type": "shell",
             "command": "${workspaceFolder}/vcbuild",

@@ -5,28 +5,24 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "debug-x64",
-            "type": "cppvsdbg",
+            "type": "node",
             "request": "launch",
-            "program": "node.exe",
-            "args": ["test\\index.js"],
-            "stopAtEntry": false,
-            "cwd": "${workspaceFolder}",
-            "environment": [],
-            "externalConsole": true,
+            "name": "launch x64",
+            "program": "${workspaceFolder}/test/index.js",
             "preLaunchTask": "debug-x64"
         },
         {
-            "name": "debug-x86",
-            "type": "cppvsdbg",
+            "type": "node",
             "request": "launch",
-            "program": "node.exe",
-            "args": ["test\\index.js"],
-            "stopAtEntry": false,
-            "cwd": "${workspaceFolder}",
-            "environment": [],
-            "externalConsole": true,
+            "name": "launch x86",
+            "program": "${workspaceFolder}/test/index.js",
             "preLaunchTask": "debug-x86"
+        },
+        {
+            "name": "VC++ Attach",
+            "type": "cppvsdbg",
+            "request": "attach",
+            "processId": "${command:pickProcess}"
         }
     ]
 }

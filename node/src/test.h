@@ -3,6 +3,6 @@
 #define __TEST_H__
 
 namespace test {
-  int apb ();
+  double add (double, double);
 }
 #endif // !__TEST_H__
